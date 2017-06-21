@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 842px;
+  height: 569px;
+  position: relative;
+  background: url("map.jpg");
+}
+
+.animate {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+
+#animate1 {
+  left: 80px;
+  top: 90px;
+  background-color: red;
+}
+
+#animate2 {
+  left: 10px;
+  top: 50px;
+  background-color: blue;
+}
+
+#Window{
+  display:none;
+  position:absolute;
+  z-index: 99999;
+  width: 400px;
+  padding: 10px;
+  background: #EEEFEB;
+  color: #000000;
+  border: 1px solid #4D4F53;
+  margin: 0px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+  box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+}
+
+body {
+  z-index: 0;
+  position: relative;
+}
+
+</style>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+
+<p>
+<button onclick="myMove()">Click Me</button>
+</p>
+
+<div id ="container">
+<div id ="animate1" class="animate"></div>
+<div id ="animate2" class="animate"></div>
+</div>
+
+<script>
+
+function setloco(x, y, i) {
+  var elem = document.getElementById("animate" + i);
+  elem.style.top = x + 'px';
+  elem.style.left = y + 'px';
+}
+
+function randomNumber() {
+  var a = Math.floor(Math.random()*16);
+  if (a == 10) {
+    return 'A'
+  } else if (a == 11){
+    return 'B'
+  }else if (a == 12){
+    return 'C'
+  }else if (a == 13){
+    return 'D'
+  }else if (a == 14){
+    return 'E'
+  }else if (a == 15){
+    return 'F'
+  }
+  return a;
+}
+
+$(document).ready(function(){
+    for (var i = 1; i < 3; i++) {
+    var objectName = "#animate" + i;
+      $(objectName).hover(function(e){
+          //setloco(40, 60, i);
+          var square = $(this);
+          var pos = square.position();
+          var x = pos.top + 40;
+          var y = pos.left + 40;
+          $('#Window').css({top: x, left:y})
+          var color = "#" + randomNumber() + randomNumber() + randomNumber() + randomNumber() + randomNumber() + randomNumber();
+          $(this).css('background-color', color);
+          $('#Window').html("<p class=\"Window\">User:GBFHJSGBJ</br> DoctorName:blahblah</p>");
+          $('#Window').show();
+      },
+      function(){
+          $('#Window').hide();
+      });
+    }
+
+});
+
+</script>
+
+<div id="Window" class="Window">
+  <p class="Window">User:Nick</br> DoctorName:blahblah</p>
+</div>
+
+</body>
+</html>
